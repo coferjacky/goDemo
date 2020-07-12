@@ -54,4 +54,14 @@ func main(){
 	fmt.Printf("%T,%x \n",c1,c1)
 	fmt.Printf("%T,%X \n",c1,c1)
 	fmt.Printf("%T,%U \n",a,a)
+
+
+	/*
+	   %b 无小数部分，二进制指数的科学计数法
+	   
+
+	 */
+	c3:=123.12345678
+	fmt.Printf("%b \n",c3)
+	fmt.Printf("%E \n",c3)
 }
