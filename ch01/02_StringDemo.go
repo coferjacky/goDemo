@@ -58,10 +58,41 @@ func main(){
 
 	/*
 	   %b 无小数部分，二进制指数的科学计数法
-	   
+	   %E 科学计数法
+	   %f 有六位小数的部分
+	   %F 和%f一致
+	   %.3e 有3位小数的的科学计数法
+	   %g 根据实际情况采用%e或%f格式
+	   %G 根据实际情况采用%E或%F格式
 
 	 */
 	c3:=123.12345678
 	fmt.Printf("%b \n",c3)
 	fmt.Printf("%E \n",c3)
+	fmt.Printf("%f \n",c3)
+	fmt.Printf("%F \n",c3)
+	fmt.Printf("%.3e \n",c3)
+	fmt.Printf("%g \n",c3)
+	fmt.Printf("%G \n",c3)
+	/*
+      复数格式打印
+	*/
+	var value complex64 = 2.1+12i
+	value2:=complex(2.1,12)
+	fmt.Println(real(value))
+	fmt.Println(imag(value))
+	fmt.Println(value2)
+	/*
+	字符串和字节数组的打印格式
+	 */
+	s0:=[]byte{'x','y','z','Z'}
+	s1:="欢迎大家学些区块链"
+	fmt.Printf("%s \n",s1)
+	fmt.Printf("%q \n",s1)
+	fmt.Printf("%x \n",s1)  //两个字节用两个字符十六进制数表示 使用a-f
+	fmt.Printf("%X \n",s1) //两个字节用两个字符十六进制数表示 使用A-F
+
+    fmt.Printf("%T,%s \n",s0,s0)
+	fmt.Printf("%T,%q \n",s0,s0)
+	fmt.Printf("%T,%x \n",s0,s0)
 }
