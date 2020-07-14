@@ -120,4 +120,26 @@ func main() {
 	fmt.Println(result)
 	fmt.Println(result2)
 
+	/*
+		枚举
+	*/
+	const (
+		Unknown = 0
+		female  = 1
+		male    = 2
+	)
+	const (
+		a11 = 10
+		b11
+		c11
+	)
+	const (
+		a22 = iota //第一次出现时0
+		b22 = iota //第二次出现时1
+		c22 = iota //第三次出现时2
+	)
+	fmt.Println(Unknown, female, male)
+	fmt.Println(a11, b11, c11)
+	fmt.Println(a22, b22, c22)
+
 }
