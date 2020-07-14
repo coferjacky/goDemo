@@ -109,4 +109,15 @@ func main() {
 	avg2 := (float64(chinese) + english) / 2
 	fmt.Printf("%T,%d \n", avg, avg)
 	fmt.Printf("%T,%f \n", avg2, avg2)
+
+	/*
+		int数值转换为string类型，注意go语言不允许字符串转int类型
+	*/
+	d1 := 97
+	d2 := 19968
+	result := string(d1)
+	result2 := string(d2)
+	fmt.Println(result)
+	fmt.Println(result2)
+
 }
