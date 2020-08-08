@@ -120,4 +120,7 @@ LOOP: //跳转到LOOP时不时重新一轮循环，而是继续当前循环，�
 		fmt.Printf("%d \t", C)
 	}
 
+	/*
+	   for循环的range格式对string、slice、array、map、channel等进行迭代循环。array、slice、string返回索引和值；map返回键和值；channel只返回通道内的值。其语法结构如下所示。
+	*/
 }
