@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 /*
@@ -142,5 +143,26 @@ func main() {
 	fmt.Println(Unknown, female, male)
 	fmt.Println(a11, b11, c11)
 	fmt.Println(a22, b22, c22)
+
+	//字符串处理函数-指定分隔符拆分
+	str1 := "i love my work and i love my family too"
+	ret := strings.Split(str1, " ")
+	for _, s := range ret {
+		fmt.Println(s)
+	}
+
+	//字符串处理函数-空格拆分:返回将字符串按照空白（unicode.IsSpace确定，可以是一到多个连续的空白字符）分割的多个字符串。如果字符串全部是空白或者是空字符串的话，会返回空切片。
+	ret1 := strings.Fields(str)
+
+	for _, s := range ret1 {
+		fmt.Println(s)
+	}
+
+	//判断字符串结束标志
+	flg := strings.HasSuffix("TEST.ABc", ".ABc") //分大小写的
+	fmt.Println(flg)
+	//判断字符串起始标志
+	flg1 := strings.HasPrefix("test.AbC", "test")
+	fmt.Println(flg1)
 
 }
