@@ -4,7 +4,7 @@ package main
 打开目录OpenFile，把目录看成一个文件
 参数1：打开目录的路径
 参数2：打开权限 O_RDONLY O_WRONLY  O_RDWR
-参数3：os.ModeDir
+参数3：os.ModeDir  打开模式 os.ModeDir是文件夹打开模式
 返回一个可以读写目录的文件指针
 *常用的的方法：Readdir
 
