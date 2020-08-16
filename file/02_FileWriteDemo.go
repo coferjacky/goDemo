@@ -14,7 +14,7 @@ func main() {
 	}
 	defer f.Close()
 	fmt.Println("success")
-	n, err := f.WriteString("HelllloWord man\r\n")
+	n, err := f.WriteString("HelllloWord man\r\n") //注意回传换行，如果是windows是\r\n,如果linux是\n
 	if err != nil {
 		fmt.Println("writeString err:", err)
 		return
