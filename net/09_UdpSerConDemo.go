@@ -8,7 +8,7 @@ import (
 
 func main() {
 	//组织一个udp的地址结构,这是服务器的Ip+端口
-	srvAddr, err := net.ResolveUDPAddr("udp", "127.0.0.1:8003")
+	srvAddr, err := net.ResolveUDPAddr("udp", "192.168.0.80:8003")
 	if err != nil {
 		fmt.Println("resolveUpdAddr err:", err)
 		return
@@ -31,15 +31,19 @@ func main() {
 			return
 		}
 		//模拟数据的处理
-		fmt.Printf("服务器读到%v数据:%s\n：", cltAddr, string(buf[:n]))
+		fmt.Printf("服务器读到%v数据:%s\n", cltAddr, string(buf[:n]))
 
-		//回写数据给客户端
-		daytime := time.Now().String()
-		_, err = udpConn.WriteToUDP([]byte(daytime), cltAddr)
-		if err != nil {
-			fmt.Println("write error", err)
-			return
-		}
+		//提取系统当前时间
+		go func() {
+			daytime := time.Now().String() + "\n"
+			//回写数据给客户端
+			_, err = udpConn.WriteToUDP([]byte(daytime), cltAddr)
+			if err != nil {
+				fmt.Println("write error", err)
+				return
+			}
+		}()
+
 	}
 
 }
