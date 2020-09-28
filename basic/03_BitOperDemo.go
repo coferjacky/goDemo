@@ -17,4 +17,27 @@ func main() {
 	e := 5
 	fmt.Println(d ^ e)
 
+	var x uint8 = 1<<1 | 1<<5
+	fmt.Printf("%08b\n", x)
+
+	var y uint8 = 1<<1 | 1<<2
+	fmt.Printf("%08b\n", y)
+
+	fmt.Printf("%08b\n", x&y)
+	fmt.Printf("%08b\n", x|y)
+
+	fmt.Printf("%08b\n", x^y)
+	fmt.Printf("%08b\n", x&^y)
+
+	//查看给定二进制数的1在哪些位置
+	for i := uint(0); i < 8; i++ { //0转换为无符号整形
+		if x&(1<<i) != 0 { //00100010 & 00000100
+			fmt.Println(i) //在1和5的位置
+		}
+	}
+	var m int8 = -100
+	fmt.Printf("%064b\n", m)
+	var z int8 = -100 >> 2
+	fmt.Printf("%08b\n", z)
+	fmt.Println(z)
 }
