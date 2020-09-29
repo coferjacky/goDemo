@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	"unicode/utf8"
 )
 
 /*
@@ -164,5 +165,29 @@ func main() {
 	//判断字符串起始标志
 	flg1 := strings.HasPrefix("test.AbC", "test")
 	fmt.Println(flg1)
+
+	//len函数返回字节数目
+	s := "Hello, 世界"
+	fmt.Println(s[0:])
+	fmt.Printf("%c\n", s[11])
+
+	//utf8解码器的使用
+	for i := 0; i < len(s); {
+		inString, size2 := utf8.DecodeRuneInString(s[i:]) //返回切片首字符，并返回该字符的所占字节数（UTF编码后长度）
+		fmt.Printf("%d\t%c\t%d\t", i, inString, size2)
+
+		i += size2
+		fmt.Println(i)
+	}
+
+	//使用range来统计字符串字符个数
+	n := 0
+	for range s { //健值返回都省略
+		n++
+
+	}
+	fmt.Println(n)
+
+	//
 
 }
