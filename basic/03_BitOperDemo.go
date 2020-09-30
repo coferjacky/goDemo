@@ -40,4 +40,10 @@ func main() {
 	var z int8 = -100 >> 2
 	fmt.Printf("%08b\n", z)
 	fmt.Println(z)
+
+	o := 0666
+	fmt.Printf("%d %[1]o %#[1]o\n")
+
+	s := int64(0xdeadbeef)
+	fmt.Printf("%d %[1]x %#[1]x\n", s)
 }
