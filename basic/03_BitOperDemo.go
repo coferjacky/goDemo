@@ -17,6 +17,7 @@ func main() {
 	e := 5
 	fmt.Println(d ^ e)
 
+	fmt.Println("{的长度为：", len("{"))
 	var x uint8 = 1<<1 | 1<<5
 	fmt.Printf("%08b\n", x)
 
@@ -41,7 +42,6 @@ func main() {
 	fmt.Printf("%08b\n", z)
 	fmt.Println(z)
 
-	o := 0666
 	fmt.Printf("%d %[1]o %#[1]o\n")
 
 	s := int64(0xdeadbeef)
