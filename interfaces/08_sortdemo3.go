@@ -5,7 +5,7 @@ import (
 	"sort"
 )
 
-//sort.String能比07更加简化
+//sort.String能比07更加简化-对整形切片进行排序
 
 func main() {
 	namesss := []string{
