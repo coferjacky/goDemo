@@ -10,7 +10,6 @@ func relectTest02(b interface{}) {
 	//1、先将interface{}转为type类型 kind value
 	rTyp := reflect.TypeOf(b)
 	fmt.Println(rTyp)
-
 	rVal := reflect.ValueOf(b)
 
 	fmt.Println(rVal)
