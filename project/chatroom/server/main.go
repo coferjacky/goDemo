@@ -50,7 +50,7 @@ func process(conn net.Conn) {
 	for {
 		//这里我们将读取数据包，直接封装成一个函数readPkg(),返回Message,Err
 		mes, err := readPkg(conn)
-
+		//fmt.Println("mes=", mes)
 		if err != nil {
 			if err == io.EOF {
 				fmt.Println("客户端退出，服务端也退出")

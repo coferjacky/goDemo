@@ -23,7 +23,7 @@ func login(userID int, userPwd string) (err error) {
 	//3.创建一个loginMes结构体
 	var loginMes message.LoginMes
 	loginMes.UserId = userID
-	loginMes.UserName = userPwd
+	loginMes.UserPwd = userPwd
 	//4 将loginMes结构体进行序列化,返回loginMes的json编码 即[]byte
 	data, err := json.Marshal(loginMes)
 	if err != nil {
@@ -51,7 +51,7 @@ func login(userID int, userPwd string) (err error) {
 		return
 	}
 	fmt.Printf("客户端发送消息的长度成功 发送长度是%d,内容是%s", len(data), string(data))
-	return
+	//  return
 
 	//发送消息
 	_, err = conn.Write(data)
