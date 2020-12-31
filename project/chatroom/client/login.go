@@ -6,11 +6,12 @@ import (
 	"fmt"
 	"net"
 	"project/chatroom/common/message"
+	"time"
 )
 
 func login(userID int, userPwd string) (err error) {
 	//1.链接服务器
-	conn, err := net.Dial("tcp", "127.0.0.1:8889")
+	conn, err := net.Dial("tcp", "localhost:8889")
 	if err != nil {
 		fmt.Println("net.Dial err=", err)
 		return
@@ -44,12 +45,12 @@ func login(userID int, userPwd string) (err error) {
 	var buf [4]byte
 	binary.BigEndian.PutUint32(buf[0:4], pkgLen)
 	//发送长度
-	n, err := conn.Write(buf[0:4])
+	n, err := conn.Write(buf[:4])
 	if n != 4 || err != nil {
 		fmt.Println("conn.Write ERR", err)
 		return
 	}
-	fmt.Println("客户端发送消息的长度成功")
+	fmt.Printf("客户端发送消息的长度成功 发送长度是%d,内容是%s", len(data), string(data))
 	return
 
 	//发送消息
@@ -58,5 +59,10 @@ func login(userID int, userPwd string) (err error) {
 		fmt.Println("conn.write(data) fail", err)
 		return
 	}
+	//休眠20s
+	time.Sleep(20 * time.Second)
+	fmt.Println("休眠20...")
+	//这里还需要处理服务器端返回的消息
+	return
 
 }
