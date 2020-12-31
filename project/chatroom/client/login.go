@@ -51,4 +51,12 @@ func login(userID int, userPwd string) (err error) {
 	}
 	fmt.Println("客户端发送消息的长度成功")
 	return
+
+	//发送消息
+	_, err = conn.Write(data)
+	if err != nil {
+		fmt.Println("conn.write(data) fail", err)
+		return
+	}
+
 }

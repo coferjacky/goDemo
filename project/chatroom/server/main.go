@@ -10,12 +10,13 @@ import (
 func process(conn net.Conn) {
 	//这里需要延时关闭conn
 	defer conn.Close()
+	buf := make([]byte, 8096)
 	//循环的客户端发送的信息
+
 	for {
-		buf := make([]byte, 8096)
 		fmt.Println("读取到了客户端发送的数据 ...")
 		n, err := conn.Read(buf[:4])
-		if n != 4 || err != nil {
+		if err != nil {
 			fmt.Println("conn.Read err=", err)
 			return
 		}
