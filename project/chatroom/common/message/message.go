@@ -19,6 +19,6 @@ type LoginMes struct {
 }
 
 type LoginResMes struct {
-	Code  int    `json:"code"`  //返回状态 500 表示改用户没有注册  200 登录成功
+	Code  int    `json:"code"`  //返回状态 500 表示改用户没有注册     200 登录成功
 	Error string `json:"error"` //返回错误信息
 }
