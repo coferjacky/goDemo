@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"net"
 	"project/chatroom/common/message"
-	"time"
 )
 
 func login(userID int, userPwd string) (err error) {
@@ -19,7 +18,7 @@ func login(userID int, userPwd string) (err error) {
 	defer conn.Close()
 	//2.准备通过conn发送消息给服务
 	var mes message.Message
-	mes.Type = message.LoginResMessType
+	mes.Type = message.LoginMesType
 	//3.创建一个loginMes结构体
 	var loginMes message.LoginMes
 	loginMes.UserId = userID
@@ -50,7 +49,7 @@ func login(userID int, userPwd string) (err error) {
 		fmt.Println("conn.Write ERR", err)
 		return
 	}
-	fmt.Printf("客户端发送消息的长度成功 发送长度是%d,内容是%s", len(data), string(data))
+	//fmt.Printf("客户端发送消息的长度成功 发送长度是%d,内容是%s", len(data), string(data))
 	//  return
 
 	//发送消息
@@ -60,9 +59,22 @@ func login(userID int, userPwd string) (err error) {
 		return
 	}
 	//休眠20s
-	time.Sleep(20 * time.Second)
-	fmt.Println("休眠20...")
+	//time.Sleep(20 * time.Second)
+	//fmt.Println("休眠20...")
 	//这里还需要处理服务器端返回的消息
+	mes, err = readPkg(conn)
+	if err != nil {
+		fmt.Println("readPkg err：", err)
+		return
+	}
+	//将mes的data部分进行反序列号成LoginResMes
+	var loginResMes message.LoginResMes
+	err = json.Unmarshal([]byte(mes.Data), &loginResMes)
+	if loginResMes.Code == 200 {
+		fmt.Println("登录成功")
+	} else if loginResMes.Code == 500 {
+		fmt.Println(loginResMes.Error)
+	}
 	return
 
 }
