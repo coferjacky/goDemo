@@ -11,7 +11,7 @@ import (
 
 //处理和客户端的通讯
 
-func readPkg(conn net.Conn) (mes message.Message, err error) {
+/*func readPkg(conn net.Conn) (mes message.Message, err error) {
 	buf := make([]byte, 8096)
 	fmt.Println("读取到了客户端发送的数据 ...")
 	//conn.read在conn没有关闭的情况下才会阻塞，
@@ -38,9 +38,9 @@ func readPkg(conn net.Conn) (mes message.Message, err error) {
 		return
 	}
 	return
-}
+}*/
 
-//处理登录请求逻辑
+/*//处理登录请求逻辑
 func serverProcessLogin(conn net.Conn, mes *message.Message) (err error) {
 	//1 从mes中取出mes.Data,并直接反序列号为LoginMes
 	var loginMes message.LoginMes
@@ -86,9 +86,9 @@ func serverProcessLogin(conn net.Conn, mes *message.Message) (err error) {
 	err = writePkg(conn, data)
 	return
 
-}
+}*/
 
-func writePkg(conn net.Conn, data []byte) (err error) {
+/*func writePkg(conn net.Conn, data []byte) (err error) {
 	//发送一个长度給对方
 	var pkgLen uint32
 	pkgLen = uint32(len(data))
@@ -108,11 +108,11 @@ func writePkg(conn net.Conn, data []byte) (err error) {
 	}
 	return
 
-}
+}*/
 
 //处理注册逻辑请求
 
-//根据客户端发送信息种类不同，调用不同函数
+/*//根据客户端发送信息种类不同，调用不同函数
 func serverProcessMes(conn net.Conn, mes *message.Message) (err error) {
 	switch mes.Type {
 	case message.LoginMesType:
@@ -125,7 +125,7 @@ func serverProcessMes(conn net.Conn, mes *message.Message) (err error) {
 	}
 	return
 }
-
+*/
 //获取套接字
 func process(conn net.Conn) {
 	//这里需要延时关闭conn
