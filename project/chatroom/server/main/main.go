@@ -1,13 +1,23 @@
 package main
 
 import (
-	"encoding/binary"
-	"encoding/json"
+
 	"fmt"
 	"io"
 	"net"
 	"project/chatroom/common/message"
 )
+
+//1 监听
+//2 等待客户端的连接
+//3 初始化工作
+
+
+
+
+
+
+
 
 //处理和客户端的通讯
 
@@ -112,28 +122,24 @@ func serverProcessLogin(conn net.Conn, mes *message.Message) (err error) {
 
 //处理注册逻辑请求
 
-/*//根据客户端发送信息种类不同，调用不同函数
-func serverProcessMes(conn net.Conn, mes *message.Message) (err error) {
-	switch mes.Type {
-	case message.LoginMesType:
-		//根据message处理一个登录后信息返回
-		err = serverProcessLogin(conn, mes)
-	case message.RegisterMesType:
-		//处理注册逻辑
-	default:
-		fmt.Println("消息类型不存在，无法处理")
-	}
+//根据客户端发送信息种类不同，调用不同函数
+/*func serverProcessMes(conn net.Conn, mes *message.Message) (err error) {
+
 	return
-}
-*/
+}*/
+
 //获取套接字
 func process(conn net.Conn) {
 	//这里需要延时关闭conn
 	defer conn.Close()
 
+	//这里调用总控制，创建一个实例
 	//循环的客户端发送的信息
-
-	for {
+	Processor:=&Processor{
+		Conn:conn,
+	}
+	Processor.process2(conn)
+	/*for {
 		//这里我们将读取数据包，直接封装成一个函数readPkg(),返回Message,Err
 		mes, err := readPkg(conn)
 		//fmt.Println("mes=", mes)
@@ -151,7 +157,7 @@ func process(conn net.Conn) {
 		err = serverProcessMes(conn, &mes)
 		if err != nil {
 			return
-		}
+		}*/
 
 	}
 

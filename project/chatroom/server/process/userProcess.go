@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net"
 	"project/chatroom/common/message"
+	"project/chatroom/server/utils"
 )
 
 type UserProcess struct {
@@ -13,7 +14,7 @@ type UserProcess struct {
 }
 
 //处理登录请求逻辑
-func (this *UserProcess) serverProcessLogin(conn net.Conn, mes *message.Message) (err error) {
+func (this *UserProcess) ServerProcessLogin(conn net.Conn, mes *message.Message) (err error) {
 	//1 从mes中取出mes.Data,并直接反序列号为LoginMes
 	var loginMes message.LoginMes
 	err = json.Unmarshal([]byte(mes.Data), &loginMes)
@@ -55,7 +56,13 @@ func (this *UserProcess) serverProcessLogin(conn net.Conn, mes *message.Message)
 		return
 	}
 	//6 发送data 将他封装到writePkg函数里面
-	err = writePkg(conn, data)
+	//因为使用了mvc模式，我们先创建一个Transfer实例，然后读取
+	tf := utils.Transfer{
+		Conn: this.Conn,
+	}
+
+	err = tf.WritePkg(data)
+
 	return
 
 }
