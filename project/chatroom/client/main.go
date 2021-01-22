@@ -24,6 +24,7 @@ func main() {
 		fmt.Println("\t\t\t 请选择(1-3):")
 
 		fmt.Scanf("%d\n", &key)
+
 		switch key {
 		case 1:
 			fmt.Println("登陆聊天室")

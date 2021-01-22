@@ -1,23 +1,13 @@
 package main
 
 import (
-
 	"fmt"
-	"io"
 	"net"
-	"project/chatroom/common/message"
 )
 
 //1 监听
 //2 等待客户端的连接
 //3 初始化工作
-
-
-
-
-
-
-
 
 //处理和客户端的通讯
 
@@ -135,31 +125,33 @@ func process(conn net.Conn) {
 
 	//这里调用总控制，创建一个实例
 	//循环的客户端发送的信息
-	Processor:=&Processor{
-		Conn:conn,
+	Processor := &Processor{
+		Conn: conn,
 	}
-	Processor.process2(conn)
+	err := Processor.process2()
+	if err != nil {
+		fmt.Println("客户端和服务器通讯的协程错误err", err)
+		return
+	}
 	/*for {
-		//这里我们将读取数据包，直接封装成一个函数readPkg(),返回Message,Err
-		mes, err := readPkg(conn)
-		//fmt.Println("mes=", mes)
-		if err != nil {
-			if err == io.EOF {
-				fmt.Println("客户端退出，服务端也退出")
-				return
-			} else {
-				fmt.Println("readpkg err=", err)
-				return
-			}
-
-		}
-		//fmt.Println("mes=", mes)
-		err = serverProcessMes(conn, &mes)
-		if err != nil {
+	//这里我们将读取数据包，直接封装成一个函数readPkg(),返回Message,Err
+	mes, err := readPkg(conn)
+	//fmt.Println("mes=", mes)
+	if err != nil {
+		if err == io.EOF {
+			fmt.Println("客户端退出，服务端也退出")
 			return
-		}*/
+		} else {
+			fmt.Println("readpkg err=", err)
+			return
+		}
 
 	}
+	//fmt.Println("mes=", mes)
+	err = serverProcessMes(conn, &mes)
+	if err != nil {
+		return
+	}*/
 
 }
 
